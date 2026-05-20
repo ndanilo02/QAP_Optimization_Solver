@@ -6,7 +6,7 @@ from brute_force import solve_brute_force
 from genetic import solve_genetic
 
 def main():
-    input_file = "lipa60a.dat"  
+    input_file = "tai10a.dat"  
     
     POP_SIZE = 100
     ELITISM = 4
@@ -41,11 +41,8 @@ def main():
     bf_cost = None
     if n < 11:
         print("\n[1] Pokretanje Brute-Force algoritma...")
-        bf_perm, bf_cost, bf_time, bf_completed = solve_brute_force(flow, dist, max_seconds=10.0)
-        if bf_completed:
-            print(f"    -> Pronadjen optimum: {bf_cost} (Vreme: {bf_time:.4f}s)")
-        else:
-            print(f"    -> Prekinuto zbog vremenskog limita! Najbolja cena: {bf_cost}")
+        bf_perm, bf_cost, bf_time = solve_brute_force(flow, dist)
+        print(f"    -> Pronadjen optimum: {bf_cost} (Vreme: {bf_time:.4f}s)")
     else:
         print(f"\n[1] Brute-Force je preskocen (N={n} > 10).")
 
@@ -79,11 +76,11 @@ def main():
         print(f"Ciljna vrednost: {target_value}")
         print(f"Odstupanje:      {gap:.3f}%")
         if gap == 0:
-            print("[OK] SAVRSENO! Pronadjeno je globalno optimalno resenje.")
+            print("[INFO] SAVRSENO! Pronadjeno je globalno optimalno resenje.")
         elif gap < 1.0:
-            print("[OK] Odlican rezultat! Odstupanje je manje od 1% u odnosu na optimum.")
+            print("[INFO] Odlican rezultat! Odstupanje je manje od 1% u odnosu na optimum.")
         else:
-            print(f"[INFO] Razlika u ceni iznosi {ga_cost - target_value} jedinica.")
+            print(f"Razlika u ceni iznosi {ga_cost - target_value} jedinica.")
     else:
         print(f"Dobijena cena: {ga_cost} (nema dostupnog optimuma za poredjenje).")
         

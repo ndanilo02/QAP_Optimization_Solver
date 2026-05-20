@@ -2,7 +2,7 @@ import time
 import itertools
 from utils import calculate_cost
 
-def solve_brute_force(flow, dist, max_seconds=None):
+def solve_brute_force(flow, dist):
     n = len(flow)
     indices = list(range(n))
     
@@ -10,13 +10,8 @@ def solve_brute_force(flow, dist, max_seconds=None):
     best_perm = None
     
     start_time = time.time()
-    completed = True
     
     for perm in itertools.permutations(indices):
-        if max_seconds and (time.time() - start_time) > max_seconds:
-            completed = False
-            break
-            
         current_cost = calculate_cost(flow, dist, perm)
         
         if current_cost < best_cost:
@@ -24,4 +19,4 @@ def solve_brute_force(flow, dist, max_seconds=None):
             best_perm = perm
             
     elapsed_time = time.time() - start_time
-    return best_perm, best_cost, elapsed_time, completed
+    return best_perm, best_cost, elapsed_time
