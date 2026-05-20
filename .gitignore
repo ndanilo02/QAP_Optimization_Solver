@@ -3,3 +3,7 @@ __pycache__/
 .DS_Store
 .vscode/
 .env
+
+# Rezultati i testovi
+results/
+src/benchmark.py
